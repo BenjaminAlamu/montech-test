@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const logger = require("./logger");
 require("dotenv").config();
 mongoose.Promise = global.Promise;
 mongoose
@@ -9,11 +10,10 @@ mongoose
     useFindAndModify: false,
   })
   .then((res) => {
-    console.log("Connected successfully");
+    logger.info("Connected successfully");
   })
   .catch((err) => {
-    console.log({ err });
-    console.log("Not connected");
+    logger.error({message: "Error connecting to database", ...err });
   });
 
 module.exports = { mongoose };
