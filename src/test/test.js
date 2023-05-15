@@ -1,48 +1,20 @@
 require("dotenv").config();
 process.env.PORT = 7777;
 process.env.DB_CONN = `${process.env.DB_CONN}_test`;
-const logger = require("../helpers/logger");
 const { faker } = require("@faker-js/faker");
-
-const mongoose = require("mongoose");
 let app = require("../index");
 let chai = require("chai");
 let chaiHttp = require("chai-http");
 const jwt = require("jsonwebtoken");
-let should = chai.should();
-let expect = chai.expect;
 let assert = chai.assert;
 const { User, Movie } = require("../models");
 const moment = require("moment");
 
 chai.use(chaiHttp);
 
-const connectDB = async () => {
-  logger.info("connecting to db");
-
-  await mongoose.connect(process.env.DB_CONN, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  });
-};
-
-const clearDB = async () => {
-  logger.warn("clearing db");
-  await Promise.all(
-    Object.values(mongoose.connection.collections).map(async (collection) =>
-      collection.deleteMany()
-    )
-  );
-};
-
 //Our parent block
 describe("Tests", async () => {
   beforeEach((done) => {
-    //Before each test we empty the database
-    // connectDB();
-    // clearDB();
     done();
   });
 
