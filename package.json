@@ -1,7 +1,7 @@
 {
   "name": "montech-test",
   "version": "1.0.0",
-  "description": "",
+  "description": "Montech.io Backend Test",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
