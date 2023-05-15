@@ -5,9 +5,8 @@ require("dotenv").config();
 const port = process.env.PORT;
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const path = require("path");
+
 const { errorConverter, errorHandler } = require("./helpers/error");
-const UPLOAD_PATH = path.join("./public/uploads");
 app.use(cors(""));
 
 require("./config/mongoose");
@@ -26,7 +25,17 @@ var urlencodedParser = bodyParser.urlencoded({
 app.use(jsonParser);
 app.use(urlencodedParser);
 app.use("/api/v1", require("./routes/index"));
-app.use(express.static(UPLOAD_PATH));
+app.get("/", (req, res) =>
+  res.status(200).send({
+    message:
+      "Welcome, you should not be here though, please visit the documentation link here: https://documenter.getpostman.com/view/4530919/2s93eeRV7y",
+  })
+);
+app.get("*", (req, res) =>
+  res.status(404).send({
+    message: "Invalid route",
+  })
+);
 app.use(errorConverter);
 app.use(errorHandler);
 
