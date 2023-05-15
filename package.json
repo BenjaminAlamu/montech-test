@@ -20,11 +20,18 @@
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
     "mongoose": "^5.8.9",
-    "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "pino": "^8.14.1",
     "pino-pretty": "^10.0.0",
     "slugify": "^1.6.5"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.3.0",
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "faker": "^5.4.0",
+    "mocha": "^2.4.5",
+    "nodemon": "^2.0.7"
   },
   "author": "",
   "license": "ISC"

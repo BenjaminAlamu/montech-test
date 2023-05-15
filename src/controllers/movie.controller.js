@@ -28,6 +28,22 @@ const editMovie = catchAsync(async function (req, res) {
 });
 
 const list = catchAsync(async function (req, res) {
+  const filter = { isDeleted: false, posterId: req.user._id };
+  const options = pick(req.query, ["sortBy", "limit", "page"]);
+  const { movie, page } = await movieService.fetchAll(filter, options);
+  const count = await movieService.count(filter);
+  res.status(200).send({
+    status: "success",
+    message: "Movie Fetched successfully",
+    data: {
+      count,
+      currentPage: page,
+      movie,
+    },
+  });
+});
+
+const all = catchAsync(async function (req, res) {
   const filter = { isDeleted: false };
   const options = pick(req.query, ["sortBy", "limit", "page"]);
   const { movie, page } = await movieService.fetchAll(filter, options);
@@ -77,4 +93,5 @@ module.exports = {
   list,
   deleteMovie,
   listOne,
+  all,
 };

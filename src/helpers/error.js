@@ -1,4 +1,4 @@
-const logger = require("../config/logger");
+const logger = require("./logger");
 const ApiError = require("./ApiError");
 
 const errorConverter = (err, req, res, next) => {

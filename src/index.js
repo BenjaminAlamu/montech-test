@@ -11,7 +11,7 @@ const UPLOAD_PATH = path.join("./public/uploads");
 app.use(cors(""));
 
 require("./config/mongoose");
-const logger = require("./config/logger");
+const logger = require("./helpers/logger");
 
 var jsonParser = bodyParser.json({
   limit: 1024 * 1024 * 20,
@@ -30,6 +30,6 @@ app.use(express.static(UPLOAD_PATH));
 app.use(errorConverter);
 app.use(errorHandler);
 
-const server = app.listen(port, () => {
-  logger.info(`Node Starter Project starts at port ${port}`);
+module.exports = app.listen(port, () => {
+  logger.info(`Server started at ${port}`);
 });

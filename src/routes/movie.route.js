@@ -5,6 +5,7 @@ const { movieController } = require("../controllers");
 const { authValidation, movieValidation } = require("../validations");
 
 const router = express.Router();
+router.get("/all", [authValidation.validateToken], movieController.all);
 
 router.post(
   "/",
